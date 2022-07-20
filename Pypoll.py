@@ -25,42 +25,43 @@
 
 #To do: performa analysis.
 #   print(election_data)
-import csv
-import os
-from traceback import print_tb
+
+#import csv
+#import os
+#from traceback import print_tb
 #Assign a variable for the file to load and the path
-file_to_load = os.path.join("Resources", "election_results.csv")
+#file_to_load = os.path.join("Resources", "election_results.csv")
 #Open the election results and read the file. 
-with open(file_to_load) as election_data:
+#with open(file_to_load) as election_data:
 
     #Print the file object
-    print(election_data)
+ #   print(election_data)
 
 #Create a filename variable to a direct or indirect path to the file. 
-file_to_save = os.path.join("analysis","election_analysis.txt")
+#file_to_save = os.path.join("analysis","election_analysis.txt")
 #using the open() function with the "w" mode we will write data to the file.
-open(file_to_save,"w")
+#open(file_to_save,"w")
 
 #use the open statement to open the file as a text file. 
-outfile = open(file_to_save,"w")
+#outfile = open(file_to_save,"w")
 #write some data to the file. 
-outfile.write("Hello World")
+#outfile.write("Hello World")
 
 #Close the file
-outfile.close()
+#outfile.close()
 
 # Using the with statement open the file as a text file. 
-with open(file_to_save, "w") as txt_file:
+#with open(file_to_save, "w") as txt_file:
     #write some data to the file.
-    txt_file.write("Hello wooooorld")
+#    txt_file.write("Hello wooooorld")
 
-with open(file_to_save,"w") as txt_file:
+#with open(file_to_save,"w") as txt_file:
 
-    txt_file.write("Arapahoe, Denver, Jeffersson")
+#    txt_file.write("Arapahoe, Denver, Jeffersson")
 
 #para espaciar (enter)
-with open(file_to_save,"w") as txt_file:
-    txt_file.write("Arapahoe\nDenver\nJefferson")
+#with open(file_to_save,"w") as txt_file:
+#    txt_file.write("Arapahoe\nDenver\nJefferson")
 
 #-----------------------------------------------------------
 
@@ -104,6 +105,23 @@ with open(file_to_load) as election_data:
             candidate_votes[candidate_name] = 0
         candidate_votes[candidate_name] += 1
 
+    with open(file_to_save, "w") as txt_file: 
+            #candidate_votes[candidate_name] +=1
+        election_results = (
+
+            f"\nElection Results\n"
+
+            f"-------------------------\n"
+
+            f"Total Votes: {total_votes:,}\n"
+
+            f"--------------------------\n")
+
+        print(election_results, end="")
+        print(candidate_results)
+        txt_file.write(election_results)
+
+
     #iterate through the candidate list
     for candidate_name in candidate_votes:
         votes = candidate_votes[candidate_name]
@@ -111,7 +129,7 @@ with open(file_to_load) as election_data:
         #print(f"{candidate_name}: received {vote_percentage}% of the votes. ")
         #Add the candidate name to the candidate list.
         #candidate_options.append(candidate_name)
-
+        candidate_results = (f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
         #Determine winning vote count and candidate
         #Determine if the vote is greater than the winning count
         if (votes > winning_count) and (vote_percentage > winning_percentage):
@@ -124,16 +142,35 @@ with open(file_to_load) as election_data:
 # to do: print out each candidate´s name, vote count, and percentage of
 #vote to the terminal
 
-        print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+    
 
-    winning_candidate_summary = (
-        f"--------------------\n"
-        f"Winner: {winning_candidate}\n"
-        f"Winning Vote Count: {winning_count:,}\n"
-        f"Winning Percentage: {winning_percentage:.1f}%\n"
-        f"--------------------\n")
-        
-    print(winning_candidate_summary)
+winning_candidate_summary = (
+    f"--------------------\n"
+    f"Winner: {winning_candidate}\n"
+    f"Winning Vote Count: {winning_count:,}\n"
+    f"Winning Percentage: {winning_percentage:.1f}%\n"
+    f"--------------------\n")
+            
+        #print(winning_candidate_summary)
+
+    with open(file_to_save, "w") as txt_file: 
+            #candidate_votes[candidate_name] +=1
+        election_results = (
+
+            f"\nElection Results\n"
+
+            f"-------------------------\n"
+
+            f"Total Votes: {total_votes:,}\n"
+
+            f"--------------------------\n")
+
+            print(election_results, end="")
+            print(candidate_results)
+            txt_file.write(election_results)
+            txt_file.write(candidate_results)       
+    
+
 
         #print(row)
 #3 Print the total votes
